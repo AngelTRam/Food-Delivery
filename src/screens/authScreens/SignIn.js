@@ -75,7 +75,7 @@ export default function SingIn({navigation}) {
           buttonStyle={parameters.styledButton}
           titleStyle={parameters.titleButton}
           onPress={()=>{
-            navigation.navigate('HomeScreen')
+            navigation.navigate('RootClientTabs')
           }}>
         </Button>
       </View>

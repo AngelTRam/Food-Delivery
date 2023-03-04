@@ -3,6 +3,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import WelcomeScreen from '../screens/authScreens/Welcome';
 import SingIn from '../screens/authScreens/SignIn';
 import Home from '../screens/HomeScreen';
+import RootClientTabs from './ClientTabs';
+import RestaurantMapScreen from '../screens/RestaurantMapScreen';
 
 const Auth = createNativeStackNavigator();
 
@@ -24,8 +26,15 @@ export default function AuthStack() {
       }}
       />
       <Auth.Screen 
-      name="HomeScreen" 
-      component={Home}
+      name="RootClientTabs"  
+      component={RootClientTabs}
+      options = {{
+        headerShown: false,
+      }}
+      />
+      <Auth.Screen 
+      name="RestaurantMapScreen"  
+      component={RestaurantMapScreen}
       options = {{
         headerShown: false,
       }}

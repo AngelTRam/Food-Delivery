@@ -18,7 +18,7 @@ import { filterData, restaurantsData } from '../global/Data';
 import FoodCard from '../components/FoodCard';
 import CountDown from 'react-native-countdown-component';
 
-export default function Home() {
+export default function Home({ navigation }) {
   const SCREEN_WIDTH = Dimensions.get('window').width;
   const [delivery, setDelivery] = useState(true);
   const [indexCheck, setIndexCheck] = useState('0');
@@ -50,6 +50,7 @@ export default function Home() {
             </TouchableOpacity>
             <TouchableOpacity onPress={() => {
               setDelivery(false)
+              navigation.navigate('RestaurantMapScreen');
             }}>
               <View
                 style={{
@@ -121,18 +122,18 @@ export default function Home() {
         <View style={styles.headerTextView}>
           <Text style={styles.headerText}>Free delivery now</Text>
         </View>
-        <View style={{ flexDirection: 'row', alignItems:'center', justifyContent:'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <Text style={{ marginLeft: 15, fontSize: 16, marginTop: 1, marginRight: 5 }}>
-            Options changing in: 
-            </Text>
-            <CountDown 
+            Options changing in:
+          </Text>
+          <CountDown
             until={3600}
-             size={14} 
-             digitStyle={{backgroundColor:colors.buttons}} 
-             digitTxtStyle={{color: 'white'}}
-            timeToShow={['M','S']}
-            timeLabels={{m:'Min', s:'Sec'}}
-             />
+            size={14}
+            digitStyle={{ backgroundColor: colors.buttons }}
+            digitTxtStyle={{ color: 'white' }}
+            timeToShow={['M', 'S']}
+            timeLabels={{ m: 'Min', s: 'Sec' }}
+          />
         </View>
         <View>
           <FlatList
@@ -191,6 +192,7 @@ export default function Home() {
         </View>
         <View style={{ width: SCREEN_WIDTH, paddingTop: 10 }}>
           {
+
             restaurantsData.map(item => (
               <View key={item.id} style={{ paddingBottom: 20 }}>
                 <FoodCard
@@ -208,6 +210,24 @@ export default function Home() {
           }
         </View>
       </ScrollView>
+      { delivery && 
+        <View style={styles.floatingMapButton}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('RestaurantMapScreen');
+            }}
+          >
+            <Icon
+              name='place'
+              type='material'
+              size={32}
+              color={colors.buttons}
+            />
+            <Text style={{ color: colors.grey5 }}>Map</Text>
+          </TouchableOpacity>
+        </View>
+      }
+
     </View>
   );
 }
@@ -288,5 +308,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     paddingBottom: 10
+  },
+  floatingMapButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 15,
+    backgroundColor: 'white',
+    elevation: 10,
+    width: 60, height: 60,
+    borderRadius: 30,
+    alignItems: 'center'
   }
 });
