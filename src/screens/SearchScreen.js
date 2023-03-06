@@ -3,10 +3,12 @@ import { View, Text, StyleSheet, FlatList, TouchableWithoutFeedback, ImageBackgr
 import SearchComponent from "../components/SearchComponent";
 import { filterData, filterData2 } from "../global/Data";
 import { colors } from "../global/styles";
+import { useNavigation } from '@react-navigation/native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export default function Search() {
+    const navigation  = useNavigation();
     return (
         <View>
             <SearchComponent />
@@ -16,14 +18,17 @@ export default function Search() {
                     data={filterData2}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => (
-                        <TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback
+                            onPress={() => {
+                                navigation.navigate("SearchResultScreen", { item: item.name })
+                            }}>
                             <View style={styles.imageView}>
-                                <ImageBackground style={styles.image} source={{uri:item.image}}>
-                                <View style={styles.textView}>
-                                    <Text style={{color: colors.cardbackground}}>
-                                        {item.name}
-                                    </Text>
-                                </View>
+                                <ImageBackground style={styles.image} source={{ uri: item.image }}>
+                                    <View style={styles.textView}>
+                                        <Text style={{ color: colors.cardbackground }}>
+                                            {item.name}
+                                        </Text>
+                                    </View>
                                 </ImageBackground>
                             </View>
                         </TouchableWithoutFeedback>
@@ -31,41 +36,44 @@ export default function Search() {
                     horizontal={false}
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
-                    ListHeaderComponent = { <Text style={styles.listHeader}>Top Categories</Text>}
+                    ListHeaderComponent={<Text style={styles.listHeader}>Top Categories</Text>}
                     ListFooterComponent={<Footer />}
                 />
             </View>
         </View>
     )
 }
- const Footer = () =>{
-    return(
-        <View style={{marginBottom:20}}>
-                <FlatList
-                    style={{ marginBottom: 1 }}
-                    data={filterData2}
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) => (
-                        <TouchableWithoutFeedback>
-                            <View style={styles.imageView}>
-                                <ImageBackground style={styles.image} source={{uri:item.image}}>
+const Footer = () => {
+    return (
+        <View style={{ flex: 1, marginBottom: 110 }}>
+            <FlatList
+                style={{ marginBottom: 10 }}
+                data={filterData2}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => (
+                    <TouchableWithoutFeedback
+                        onPress={() => {
+                            navigation.navigate("SearchResultScreen", { item: item.name })
+                        }}>
+                        <View style={styles.imageView}>
+                            <ImageBackground style={styles.image} source={{ uri: item.image }}>
                                 <View style={styles.textView}>
-                                    <Text style={{color: colors.cardbackground}}>
+                                    <Text style={{ color: colors.cardbackground }}>
                                         {item.name}
                                     </Text>
                                 </View>
-                                </ImageBackground>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    )}
-                    horizontal={false}
-                    showsVerticalScrollIndicator={false}
-                    numColumns={2}
-                    ListHeaderComponent = { <Text style={styles.listHeader}>More Categories</Text>}
-                />
-            </View>
+                            </ImageBackground>
+                        </View>
+                    </TouchableWithoutFeedback>
+                )}
+                horizontal={false}
+                showsVerticalScrollIndicator={false}
+                numColumns={2}
+                ListHeaderComponent={<Text style={styles.listHeader}>More Categories</Text>}
+            />
+        </View>
     )
- }
+}
 const styles = StyleSheet.create({
 
     imageView: {
