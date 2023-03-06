@@ -5,6 +5,7 @@ import SingIn from '../screens/authScreens/SignIn';
 import Home from '../screens/HomeScreen';
 import RootClientTabs from './ClientTabs';
 import RestaurantMapScreen from '../screens/RestaurantMapScreen';
+import DrawerNavigator from '../navigation/DrawerNavigator';
 
 const Auth = createNativeStackNavigator();
 
@@ -26,8 +27,8 @@ export default function AuthStack() {
       }}
       />
       <Auth.Screen 
-      name="RootClientTabs"  
-      component={RootClientTabs}
+      name="DrawerNavigator"  
+      component={DrawerNavigator}
       options = {{
         headerShown: false,
       }}

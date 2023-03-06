@@ -75,7 +75,7 @@ export default function SingIn({navigation}) {
           buttonStyle={parameters.styledButton}
           titleStyle={parameters.titleButton}
           onPress={()=>{
-            navigation.navigate('RootClientTabs')
+            navigation.navigate('DrawerNavigator')
           }}>
         </Button>
       </View>
