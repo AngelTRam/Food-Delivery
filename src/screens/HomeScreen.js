@@ -24,7 +24,7 @@ export default function Home({ navigation }) {
   const [indexCheck, setIndexCheck] = useState('0');
   return (
     <View style={styles.container}>
-      <HomeHeader navigation={navigation}/>
+      <HomeHeader navigation={navigation} />
       <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={true}>
 
         {/* Delivery and Pick Up selector */}
@@ -42,9 +42,9 @@ export default function Home({ navigation }) {
               <View
                 style={{
                   ...styles.delivertButton,
-                  backgroundColor: delivery ? colors.buttons : colors.grey3,
+                  backgroundColor: delivery ? colors.buttons : colors.grey4,
                 }}>
-                <Text style={{ ...styles.deliveryText, color: delivery ? 'white' : colors.grey1 }}>
+                <Text style={{ ...styles.deliveryText, color: delivery ? 'white' : colors.grey2 }}>
                   Delivery</Text>
               </View>
             </TouchableOpacity>
@@ -55,9 +55,9 @@ export default function Home({ navigation }) {
               <View
                 style={{
                   ...styles.delivertButton,
-                  backgroundColor: delivery ? colors.grey3 : colors.buttons,
+                  backgroundColor: delivery ? colors.grey4 : colors.buttons,
                 }}>
-                <Text style={{ ...styles.deliveryText, color: delivery ? colors.grey1 : 'white' }}>Pick Up</Text>
+                <Text style={{ ...styles.deliveryText, color: delivery ? colors.grey2 : 'white' }}>Pick Up</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -210,7 +210,7 @@ export default function Home({ navigation }) {
           }
         </View>
       </ScrollView>
-      { delivery && 
+      {delivery &&
         <View style={styles.floatingMapButton}>
           <TouchableOpacity
             onPress={() => {
@@ -223,7 +223,7 @@ export default function Home({ navigation }) {
               size={32}
               color={colors.buttons}
             />
-            <Text style={{ color: colors.grey5 }}>Map</Text>
+            <Text style={{ color: colors.grey2 }}>Map</Text>
           </TouchableOpacity>
         </View>
       }
@@ -263,25 +263,25 @@ const styles = StyleSheet.create({
   },
   addressView: {
     flexDirection: 'row',
-    backgroundColor: colors.grey3,
+    backgroundColor: colors.grey4,
     borderRadius: 50,
     paddingHorizontal: 20,
     justifyContent: 'space-between',
   },
   headerText: {
-    color: colors.grey1,
+    color: colors.grey2,
     fontSize: 22,
     fontWeight: 'bold',
     paddingLeft: 20
   },
   headerTextView: {
-    backgroundColor: colors.grey3,
+    backgroundColor: colors.grey4,
     marginVertical: 20,
     padding: 5
   },
   smallCard: {
     borderRadius: 30,
-    backgroundColor: colors.grey3,
+    backgroundColor: colors.grey4,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,

@@ -1,10 +1,10 @@
 export const colors = {
   buttons: '#f44336',
   grey1: '#43484d',
-  grey2: '#86939e',
-  grey3: '#bdc6cf',
-  grey4: '#elegee',
-  grey5: '#86939e',
+  grey2: '#5e6977',
+  grey3: '#86939e',
+  grey4: '#bdc6cf',
+  grey5: '#e1e8ee',
   CardComent: '#86939e',
   cardbackground: 'white',
   statusBar: '#f44336',
@@ -14,7 +14,7 @@ export const colors = {
 export const parameters = {
   headerHeight: 50,
 
-  styledButton:{
+  styledButton: {
     backgroundColor: "#f44336",
     alignContent: 'center',
     justifyContent: 'center',
@@ -23,16 +23,16 @@ export const parameters = {
     borderColor: "#f44336",
     height: 50,
     paddingHorizontal: 20,
-    width:'100%'
+    width: '100%'
   },
 
-  titleButton:{
+  titleButton: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    
+
   }
 };
 
@@ -40,7 +40,7 @@ export const titleText = {
   color: "#f44336",
   fontSize: 32,
   fontWeight: 'bold',
-  
+
 };
 
 export const title = {
