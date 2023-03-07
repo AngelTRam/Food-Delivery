@@ -10,6 +10,7 @@ import {
   Pressable,
   Image,
   Dimensions,
+  StatusBar
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import HomeHeader from '../components/HomeHeader';
@@ -24,6 +25,7 @@ export default function Home({ navigation }) {
   const [indexCheck, setIndexCheck] = useState('0');
   return (
     <View style={styles.container}>
+      
       <HomeHeader navigation={navigation} />
       <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={true}>
 

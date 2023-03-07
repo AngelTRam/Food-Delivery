@@ -1,24 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Home from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import SearchResultScreen from '../screens/SearchResultScreen';
 import RestaurantHomeScreen from '../screens/RestaurantHomeScreen';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import MenuProductsScreen from '../screens/MenuProductsScreen';
 
 const ClientSearch = createNativeStackNavigator();
-export default function ClientStack() {
+export default function ClientStack({ navigation, route }) {
+
+    useLayoutEffect(() => {
+        const routeName = getFocusedRouteNameFromRoute(route);
+        if (routeName === "RestaurantHomeScreen") {
+            navigation.setOptions({ tabBarVisible: false })
+        } else {
+            navigation.setOptions({ tabBarVisible: true })
+        }
+    })
     return (
         <ClientSearch.Navigator
-        screenOptions={{
-            headerShown: false
-        }}>
+            screenOptions={{
+                headerShown: false
+            }}>
             <ClientSearch.Screen
                 name='SearchScreen'
                 component={SearchScreen}
                 headerShown={false}
                 options={() => {
-                  
+
                 }}
             />
             <ClientSearch.Screen
@@ -26,7 +35,7 @@ export default function ClientStack() {
                 component={SearchResultScreen}
                 headerShown={false}
                 options={() => {
-                  
+
                 }}
             />
             <ClientSearch.Screen
@@ -34,7 +43,15 @@ export default function ClientStack() {
                 component={RestaurantHomeScreen}
                 headerShown={false}
                 options={() => {
-                  
+
+                }}
+            />
+            <ClientSearch.Screen
+                name='MenuProductsScreen'
+                component={MenuProductsScreen}
+                headerShown={false}
+                options={() => {
+
                 }}
             />
         </ClientSearch.Navigator>

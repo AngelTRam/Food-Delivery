@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989195507367",
+    "project_id": "express-food-6748e",
+    "storage_bucket": "express-food-6748e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989195507367:android:92ba1c96e4d808eee52d82",
+        "android_client_info": {
+          "package_name": "com.angel.expressfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989195507367-01j4hlbk2fo6s680jejbktqpffsmvvtk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn63kcLomuvHUXeZqNG9k79xw5z42JVUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989195507367-01j4hlbk2fo6s680jejbktqpffsmvvtk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
