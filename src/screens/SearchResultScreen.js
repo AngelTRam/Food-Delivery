@@ -3,12 +3,15 @@ import React from 'react'
 import RestaurantResultCard from '../components/RestaurantResultCard'
 import { restaurantsData } from '../global/Data';
 import { colors } from '../global/styles';
+import { productData } from '../global/Data';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export default function SearchResultScreen({ navigation, route }) {
+const SearchResultScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
+
+
 
       <View>
         <FlatList
@@ -40,9 +43,11 @@ export default function SearchResultScreen({ navigation, route }) {
           showsVerticalScrollIndicator={false}
         />
       </View>
+
     </View>
   )
 }
+export default SearchResultScreen
 
 const styles = StyleSheet.create({
   container: {

@@ -1,58 +1,76 @@
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, FlatList } from 'react-native'
 import React from 'react'
 import { Icon } from 'react-native-elements'
 import { colors } from '../global/styles'
 import ProductCard from './ProductCard'
 
-export default function RestaurantResultCard({ OnPressFoodCard,
+export default function RestaurantResultCard({  
+    OnPressRestaurantCard,
     restaurantName,
-    deliveryAvailable,
-    discountAvailable,
-    discountPercent,
-    numberOfReview,
-    businessAddress,
-    farAway,
-    averageReview,
+    deliveryAvailabe,
+    discountAvailable ,
+    discountPercent ,
+    numberOfReview ,
+    businessAddress ,
+    farAway ,
+    averageReview ,
     images,
-    screenWidth }) {
+    productData }) {
 
     return (
         <View>
-            <View style={styles.view1}>
-                <View style={{ height: 150 }}>
-                    <ImageBackground
-                        style={{ height: 160 }}
-                        source={{ uri: images }}
-                        imageStyle={styles.imageStyle}
-                    />
-                    <View style={styles.image}>
-                        <Text style={styles.text1}>{averageReview}</Text>
-                        <Text style={styles.text2}> {numberOfReview} reviews</Text>
-                    </View>
-                </View>
-                <View style={styles.view3}>
-                    <View style={{ paddingTop: 5 }}>
-                        <Text style={styles.text5}>{restaurantName}</Text>
-                    </View>
-                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <View style={styles.view4}>
-                            <Icon
-                                name='place'
-                                type='material'
-                                color={colors.CardComent}
-                                size={18}
-                                iconStyle={{ marginTop: 3 }}
-                            />
-                            <Text style={styles.view5}>{farAway} Min</Text>
-                        </View>
-                        <View style={{ flex: 9 }}>
-                            <Text style={styles.text6}>{businessAddress}</Text>
+              <TouchableOpacity onPress ={OnPressRestaurantCard}>
+                <View style={styles.view1}>
+                    <View style={{ height: 150 }}>
+                        <ImageBackground
+                            style={{ height: 160 }}
+                            source={{ uri: images }}
+                            imageStyle={styles.imageStyle}
+                        />
+                        <View style={styles.image}>
+                            <Text style={styles.text1}>{averageReview}</Text>
+                            <Text style={styles.text2}> {numberOfReview} reviews</Text>
                         </View>
                     </View>
+                    <View style={styles.view3}>
+                        <View style={{ paddingTop: 5 }}>
+                            <Text style={styles.text5}>{restaurantName}</Text>
+                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <View style={styles.view4}>
+                                <Icon
+                                    name='place'
+                                    type='material'
+                                    color={colors.CardComent}
+                                    size={18}
+                                    iconStyle={{ marginTop: 3 }}
+                                />
+                                <Text style={styles.view5}>{farAway} Min</Text>
+                            </View>
+                            <View style={{ flex: 9 }}>
+                                <Text style={styles.text6}>{businessAddress}</Text>
+                            </View>
+                        </View>
+                    </View>
                 </View>
-            </View>
-            <View style={{marginTop:5,marginBottom:20}}>
-                <ProductCard />
+            </TouchableOpacity>
+
+            <View style={{ marginTop: 5, marginBottom: 20 }}>
+                <FlatList
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    style={{ backgroundColor: colors.cardbackground }}
+                    data={productData}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ index, item }) => (
+                        <ProductCard
+                            image={item.image}
+                            productName={item.name}
+                            price={item.price}
+                        />
+                    )}
+                />
+
             </View>
         </View>
     )
