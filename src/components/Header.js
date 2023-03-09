@@ -8,7 +8,7 @@ export default function Header({title, type, navigation}) {
     <View style={styles.header}>
       <View style={{marginLeft: 20}}>
         <Icon
-          type="antdesing"
+          type="material-community"
           name={type}
           color={colors.headerText}
           size={28}
