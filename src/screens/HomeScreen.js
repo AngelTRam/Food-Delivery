@@ -140,11 +140,10 @@ export default function Home({ navigation }) {
         <View>
           <FlatList
             showsHorizontalScrollIndicator={false}
-
             horizontal={true}
             data={restaurantsData}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <View>
                 <FoodCard
                   screenWidth={SCREEN_WIDTH * 0.8}
@@ -154,7 +153,10 @@ export default function Home({ navigation }) {
                   businessAddress={item.businessAddress}
                   farAway={item.farAway}
                   averageReview={item.averageReview}
-
+                  onPress={()=>{
+                    navigation.navigate("RestaurantHomeScreen", { id: index, restaurant: item.restaurantName })
+                    console.log('tarjeta pulsada')
+                  }}
                 />
               </View>
             )}

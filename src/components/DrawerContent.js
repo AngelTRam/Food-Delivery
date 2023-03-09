@@ -3,25 +3,27 @@ import { View, Text, Linking, Pressable, Alert, Switch, StyleSheet } from "react
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from "@react-navigation/drawer";
 import { Avatar, Button, Icon } from "react-native-elements";
 import { colors } from "../global/styles";
-import { auth } from '../fb/fbauth';
-import { signOut } from "firebase/auth";
+//import { auth } from '../fb/fbauth';
 import { SignInContext } from "../contexts/authContext";
+import auth from 'firebase/auth';
 
 export default function DrawerContent(props) {
-    const avatarPic = 'https://scontent.fyum1-1.fna.fbcdn.net/v/t39.30808-6/330330103_440748674908048_2406409396053282488_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEOS-QeRSWYvnywhKIUXZljedr-3bu0wil52v7du7TCKeYG2Te2xMvcapygn2KqsZU8qNtdZe_T3UpEW3jJV-6e&_nc_ohc=rptiHsrBeVsAX8eiSsK&_nc_ht=scontent.fyum1-1.fna&oh=00_AfCYEWgIvflpHMCUKR-E3TrtDS_G1_78IHyhD7XJNqv-Qg&oe=6409145A'
+    const avatarPic = 'https://scontent.fmxl1-1.fna.fbcdn.net/v/t39.30808-6/330330103_440748674908048_2406409396053282488_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEOS-QeRSWYvnywhKIUXZljedr-3bu0wil52v7du7TCKeYG2Te2xMvcapygn2KqsZU8qNtdZe_T3UpEW3jJV-6e&_nc_ohc=Fp-68hUa1fMAX86Lp7m&_nc_ht=scontent.fmxl1-1.fna&oh=00_AfAAVipMVv2IAon1lySqk55UvJw2hXzWyOCvG7r0VdrSvg&oe=640F031A'
     const { dispatchSignedIn } = useContext(SignInContext)
 
     async function signOutFunction() {
+
         try {
-             auth
-        .signOut()
-        .then(
-            ()=>{console.log("USER SUCCESSFULLY SIGNED OUT")
-            dispatchSignedIn({type:"UPDATE_SIGN_IN",payload:{userToken:null}})
-        })
+            auth()
+                .signOut()
+                .then(
+                    () => {
+                        console.log("USER SUCCESSFULLY SIGNED OUT")
+                        dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: null } })
+                    })
+
         } catch (error) {
-            console.error("Error signing out:", error);
-            Alert.alert(error.code);
+            console.log("USER SIGNED OUT")
         }
     }
 

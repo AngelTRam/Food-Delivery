@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, ScrollView, Image } from 'react-native'
+import { Text, StyleSheet, View, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import { colors } from '../global/styles'
 import { CheckBox, Icon } from 'react-native-elements'
@@ -9,8 +9,10 @@ export default class PreferenceScreen extends Component {
         this.state = {
             preference: menuDetailedData[this.props.route.params.index].preferenceData,
             required: menuDetailedData[this.props.route.params.index].required,
-            minimum_quatity: menuDetailedData[this.props.route.params.index].minimum_quatity
+            minimum_quatity: menuDetailedData[this.props.route.params.index].minimum_quatity,
+            counter: menuDetailedData[this.props.route.params.index].counter
         }
+
     }
 
     render() {
@@ -77,22 +79,52 @@ export default class PreferenceScreen extends Component {
                                 </View>
                                 <View style={styles.view10}>
                                     {
-                                        item.map(item =>
-                                            <View style={styles.view4}>
-                                                <View style={styles.view5}>
-                                                    <View style={styles.view6}>
-                                                        <CheckBox
-                                                            center
-                                                            checkedIcon='check-square-o'
-                                                            uncheckedIcon='square-o'
-                                                            checked={false}
-                                                            checkedColor={colors.buttons}
-                                                        />
-                                                        <Text style={{color:colors.grey2}}>{item.name}</Text>
+                                        item.map(items =>
+                                            <TouchableOpacity
+                                                key={items.id}
+                                                onPress={() => {
+                                                    const id = this.state.preference.indexOf(item);
+                                                    if (this.state.minimum_quatity[id] !== null) {
+                                                        const check = item.filter(items => items.checked ? items : null);
+                                                        this.state.preference[id].forEach(i => {
+                                                            if (i.id === items.id) {
+                                                                if (check.length < this.state.minimum_quatity[id]) {
+                                                                    i.checked = !i.checked
+                                                                } else {
+                                                                    i.checked = false
+                                                                }
+                                                            }
+                                                        })
+                                                        this.state.counter[id] = this.state.counter[id] + 1
+                                                        this.setState({
+                                                            preference: [...this.state.preference],
+                                                            counter: [...this.state.counter]
+                                                        })
+                                                    } else {
+                                                        this.state.preference[id].forEach(i => {
+                                                            if (i.id === items.id) {
+                                                                i.checked = !i.checked
+                                                            }
+                                                        })
+                                                        this.setState({ preference: [...this.state.preference] })
+                                                    }
+                                                }}>
+                                                <View style={styles.view4}>
+                                                    <View style={styles.view19}>
+                                                        <View style={styles.view6}>
+                                                            <CheckBox
+                                                                center
+                                                                checkedIcon='check-square-o'
+                                                                uncheckedIcon='square-o'
+                                                                checked={items.checked}
+                                                                checkedColor={colors.buttons}
+                                                            />
+                                                            <Text style={{ color: colors.grey2 }}>{items.name}</Text>
+                                                        </View>
+                                                        <Text style={styles.text6}>{items.price.toFixed(2)} $</Text>
                                                     </View>
-                                                    <Text style={styles.text6}>{item.price.toFixed(2)} $</Text>
                                                 </View>
-                                            </View>
+                                            </TouchableOpacity>
                                         )
                                     }
                                 </View>
@@ -100,6 +132,33 @@ export default class PreferenceScreen extends Component {
                         }
                     </View>
                 </ScrollView>
+                <View style={styles.view13}>
+                    <Text style={styles.text11}>Quantitiy</Text>
+                </View>
+                <View style={styles.view14}>
+                    <View style={styles.view15}>
+                        <Icon
+                            name='remove'
+                            type='material'
+                            color={colors.black}
+                            size={25}
+                        />
+                    </View>
+                    <Text style={styles.text9}>1</Text>
+                    <View style={styles.view16}>
+                        <Icon
+                            name='add'
+                            type='material'
+                            color={colors.black}
+                            size={25}
+                        />
+                    </View>
+                </View>
+                <View style={styles.view17}>
+                    <View style={styles.view18}>
+                        <Text style={styles.text10}>Add 1 to Cart 78.21 $</Text>
+                    </View>
+                </View>
             </View>
         )
     }

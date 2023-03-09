@@ -5,13 +5,15 @@ import { Icon } from 'react-native-elements';
 import { colors } from '../global/styles';
 import BusinessConsole from '../screens/BusinessConsoleScreen';
 import DrawerContent from '../components/DrawerContent';
+import Home from '../screens/HomeScreen';
+import WelcomeScreen from '../screens/authScreens/Welcome';
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator() {
     return (
         <Drawer.Navigator
 
-        drawerContent={props=> <DrawerContent {...props}/>}
+            drawerContent={props => <DrawerContent {...props} />}
 
         >
             <Drawer.Screen
@@ -49,6 +51,8 @@ export default function DrawerNavigator() {
                     headerShown: false
                 }}
             />
+
+           
         </Drawer.Navigator>
     )
 }

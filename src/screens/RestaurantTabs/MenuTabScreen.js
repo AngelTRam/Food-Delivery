@@ -36,7 +36,7 @@ const MenuTabScreen = ({ navigation, restaurant, onPress }) => {
                     menuData.map((items) =>
                         <View key={items.key} style={styles.view1}>
                             <TouchableOpacity
-                                onPress={handlePress}
+                                onPress={onPress}
                             >
                                 <View style={styles.view2}>
                                     <Text style={styles.text1}>{items.title}</Text>
